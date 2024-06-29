@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/jamianooriyya/static/css/main.1ecc0e9b.css",
+    "main.js": "/jamianooriyya/static/js/main.07f91452.js",
+    "static/js/453.7729e87d.chunk.js": "/jamianooriyya/static/js/453.7729e87d.chunk.js",
+    "index.html": "/jamianooriyya/index.html",
+    "main.1ecc0e9b.css.map": "/jamianooriyya/static/css/main.1ecc0e9b.css.map",
+    "main.07f91452.js.map": "/jamianooriyya/static/js/main.07f91452.js.map",
+    "453.7729e87d.chunk.js.map": "/jamianooriyya/static/js/453.7729e87d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1ecc0e9b.css",
+    "static/js/main.07f91452.js"
+  ]
+}
