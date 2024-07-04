@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
+import axios from 'axios';
 
 
 const About = () => {
@@ -10,15 +11,34 @@ const About = () => {
     username: '',
     password: ''
   });
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
+  const handleLogin = async (e) => {
+    e.preventDefault();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    navigate('/dashboard');
-    // Handle form submission logic here, e.g., submit data to backend
+    try {
+      const response = await axios.post('http://localhost:5000/login', { username, password });
+      localStorage.setItem('token', response.data.token);
+      setMessage('Login successful');
+    } catch (error) {
+      setMessage('Login failed');
+    }
+  };
 
-    // Example: Logging form data to console
-    // console.log(formData);
 
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+    // navigate('/dashboard');
+    try {
+      const response = await axios.get('http://localhost:3001/login', {
+        username,
+        password,
+      });
+      setMessage(response.data.message);
+    } catch (error) {
+      setMessage(error.response.data.message);
+    }
 
   };
 
@@ -32,28 +52,17 @@ const About = () => {
   return (
     <><Navbar></Navbar>
     <form onSubmit={handleSubmit}>
-      <label>
-        Username:
-        <input
-          type="text"
-          name="username"
-          value={formData.username}
-          onChange={handleChange}
-        />
-      </label>
-      <br />
-      <label>
-        Password:
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-        />
-      </label>
-      <br />
-      <button type="submit">Submit</button>
-    </form></>
+        <div>
+          <label>Username</label>
+          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+        </div>
+        <div>
+          <label>Password</label>
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        </div>
+        <button type="submit">Login</button>
+      </form>
+      {message && <p>{message}</p>}</>
   );
 };
 

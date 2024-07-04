@@ -31,6 +31,10 @@ code {
   background-size: cover; 
   background-repeat: no-repeat;
   margin-top:-16px;
-  
+  background-color: aliceblue;
   padding-left: 15px;
+}
+.bgWhite{
+  padding: 15px;
+  background-color: aliceblue;
 }
